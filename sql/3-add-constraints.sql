@@ -1,12 +1,3 @@
-
-CREATE INDEX "pk" ON  "movement" ("id");
-
-
-CREATE INDEX "pk" ON  "event" ("id");
-
-CREATE INDEX "fk" ON  "event" ("movementId", "categoryId", "organizationId");
-
-CREATE INDEX "pk" ON  "category" ("id");
-
-CREATE INDEX "pk" ON  "organization" ("id");
-
+ALTER TABLE event ADD FOREIGN KEY ("category_id") REFERENCES category("id");
+ALTER TABLE event ADD FOREIGN KEY ("movement_id") REFERENCES movement("id");
+ALTER TABLE event ADD FOREIGN KEY ("organization_id") REFERENCES organization("id");

@@ -1,41 +1,47 @@
-CREATE TABLE "movement" (
+DROP TABLE IF EXISTS category CASCADE;
+DROP TABLE IF EXISTS event CASCADE;
+DROP TABLE IF EXISTS movement CASCADE;
+DROP TABLE IF EXISTS organization CASCADE;
+
+CREATE TABLE category (
   "id" serial,
   "name" text,
-  "date" bigint,
-  "description" text,
-  "link" text
+  primary key ("id")
 );
 
-CREATE TABLE "event" (
+CREATE TABLE event (
   "id" serial,
-  "movementId" int,
-  "categoryId" int,
+  "movement_id" int,
+  "category_id" int,
+  "organization_id" int,
   "name" text,
-  "eventTime" bigint,
-  "createdTime" bigint,
-  "updatedTime" bigint,
+  "event_time" bigint,
+  "created_time" bigint,
+  "updated_time" bigint,
   "city" text,
   "state" text,
   "location" text,
   "description" text,
-  "organizationId" int,
   "tags" text,
   "link" text,
-  "estimatedSize" int,
-  "actualSize" int
+  "estimated_size" int,
+  "actual_size" int,
+  primary key ("id")
 );
 
-
-CREATE TABLE "category" (
+CREATE TABLE movement (
   "id" serial,
-  "name" text
+  "name" text,
+  "date" bigint,
+  "description" text,
+  "link" text,
+  primary key ("id")
 );
 
-CREATE TABLE "organization" (
+CREATE TABLE organization (
   "id" serial,
   "name" text,
   "description" text,
-  "link" text
+  "link" text,
+  primary key ("id")
 );
-
-
