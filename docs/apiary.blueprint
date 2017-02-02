@@ -1,0 +1,243 @@
+FORMAT: 1A
+HOST: https://findaprotest.herokuapp.com/api/generic
+
+# findaprotest-api
+
+findaprotest-api is a RESTful API to manage protest-related categories, events, movements, and organizations.
+
+* An event is a specific real-world protest that includes a time and place.
+* An event can have a category such as environment, women's health, education, etc.
+* An event may be part of a broader movement. Think of a movement as the super protest (e.g. Women's March 2017) that may have many related events for each specific protest location.
+* An organization coordinates an event.
+* An organization may also coordinate a movement.
+* Events are not required to inherit the organizer of the related movement.
+
+## Optional parameters
+
+All collection endpoints can take these optional parameters for GET requests:
+
+  + orderBy (string, `id`, optional) ... The field to order the results by.
+  + orderByDesc (boolean, `false`, optional) ... Whether or not the results should be ordered in descending order.
+  + page (number, `1`, optional) ... The page number of results to display. Starts at page 1.
+  + pageSize (number, `25`, optional) ... The number of results to return in a single request.
+
+## category [/category]
+
++ Attributes
+    + id : 1 (number) - PostgreSQL serial type. Primary key.
+    + name : environment (string)
+
+### List all categories [GET]
+
++ Response 200 (application/json)
+  + Attributes (array[category,category,category])
+
+### Create a new category [POST]
+
++ Request (application/json)
+    + Attributes (object)
+        + name : environment (string)
+
++ Response 201 (application/json)
+
+## category resource [/category/{id}]
+
++ Parameters
+    + id (number, `1`)
+
+### Get details of a category [GET]
+
++ Response 200 (application/json)
+  + Attributes (category)
+
+### Update details of a category [PUT]
+
++ Request (application/json)
+    + Attributes (object)
+        + name : environment (string)
+
++ Response 200 (application/json)
+
+### Delete a category [DELETE]
+
++ Response 200
+
+## event [/event]
+
++ Attributes
+    + id : 1 (number) - PostgreSQL serial type. Primary key.
+    + movementId : 1 (number)
+    + categoryId : 1 (number)
+    + organizationId : 1 (number)
+    + name : `Example Event` (string)
+    + eventTime : 1486072020 (number)
+    + createdTime : 1486072020 (number)
+    + updatedTime : 1486072020 (number)
+    + city : `Gainesville` (string)
+    + state : FL (string)
+    + location : `Bo Diddley Plaza` (string)
+    + description : `An example event that will take place to protest a thing.` (string)
+    + tags : `families` (string)
+    + link : `https://www.meetup.com/Example/events/123456789/` (string)
+    + estimatedSize : 100 (number)
+    + actualSize : 200 (number)
+
+### List all events [GET]
+
++ Response 200 (application/json)
+  + Attributes (array[event,event,event])
+
+### Create a new event [POST]
+
++ Request (application/json)
+    + Attributes (object)
+        + name : `Example Event` (string)
+        + city : `Gainesville` (string)
+        + state : FL (string)
+        + location : `Bo Diddley Plaza` (string)
+        + description : `An example event that will take place to protest a thing.` (string)
+        + movementId : 1 (number, optional)
+        + categoryId : 1 (number, optional)
+        + organizationId : 1 (number, optional)
+        + eventTime : 1486072020 (number, optional)
+        + createdTime : 1486072020 (number, optional)
+        + updatedTime : 1486072020 (number, optional)
+        + tags : `families, animals` (string, optional)
+        + link : `https://www.meetup.com/Example/events/123456789/` (string, optional)
+        + estimatedSize : 100 (number, optional)
+        + actualSize : 200 (number, optional)
+
++ Response 201 (application/json)
+
+## event resource [/event/{id}]
+
++ Parameters
+    + id (number, `1`)
+
+### Get details of an event [GET]
+
++ Response 200 (application/json)
+  + Attributes (event)
+
+### Update details of an event [PUT]
+
++ Request (application/json)
+    + Attributes (object)
+        + name : `Example Event` (string, optional)
+        + city : `Gainesville` (string, optional)
+        + state : FL (string, optional)
+        + location : `Bo Diddley Plaza` (string, optional)
+        + description : `An example event that will take place to protest a thing.` (string, optional)
+        + movementId : 1 (number, optional)
+        + categoryId : 1 (number, optional)
+        + organizationId : 1 (number, optional)
+        + eventTime : 1486072020 (number, optional)
+        + createdTime : 1486072020 (number, optional)
+        + updatedTime : 1486072020 (number, optional)
+        + tags : `families, animals` (string, optional)
+        + link : `https://www.meetup.com/Example/events/123456789/` (string, optional)
+        + estimatedSize : 100 (number, optional)
+        + actualSize : 200 (number, optional)
+
++ Response 200 (application/json)
+
+### Delete an event [DELETE]
+
++ Response 200
+
+## movement [/movement]
+
++ Attributes
+    + id : 1 (number) - PostgreSQL serial type. Primary key.
+    + name : `Women's March` (string)
+    + date : 1486072020 (number)
+    + description : `Women's March` (string)
+    + link : `https://www.meetup.com/Example/events/123456789/` (string)
+
+### List all movements [GET]
+
++ Response 200 (application/json)
+  + Attributes (array[movement,movement,movement])
+
+### Create a new movement [POST]
+
++ Request (application/json)
+    + Attributes (object)
+        + name : `Women's March` (string)
+        + description : `Women's March` (string)
+        + date : 1486072020 (number, optional)
+        + link : `https://www.meetup.com/Example/events/123456789/` (string, optional)
+
++ Response 201 (application/json)
+
+## movement resource [/movement/{id}]
+
++ Parameters
+    + id (number, `1`)
+
+### Get details of a movement [GET]
+
++ Response 200 (application/json)
+  + Attributes (movement)
+
+### Update details of a movement [PUT]
+
++ Request (application/json)
+    + Attributes (object)
+        + name : `Women's March` (string, optional)
+        + description : `Women's March` (string, optional)
+        + date : 1486072020 (number, optional)
+        + link : `https://www.meetup.com/Example/events/123456789/` (string, optional)
+
++ Response 200 (application/json)
+
+### Delete a movement [DELETE]
+
++ Response 200
+
+## organization [/organization]
+
++ Attributes
+    + id : 1 (number) - PostgreSQL serial type. Primary key.
+    + name : `ACLU` (string)
+    + description : `American Civil Liberties Union is coordinating this movement.` (string)
+    + link : `https://www.meetup.com/Example/events/123456789/` (string)
+
+### List all organizations [GET]
+
++ Response 200 (application/json)
+  + Attributes (array[organization,organization,organization])
+
+### Create a new organization [POST]
+
++ Request (application/json)
+    + Attributes (object)
+        + name : `ACLU` (string)
+        + description : `American Civil Liberties Union is coordinating this movement.` (string)
+        + link : `https://www.meetup.com/Example/events/123456789/` (string)
+
++ Response 201 (application/json)
+
+## organization resource [/organization/{id}]
+
++ Parameters
+    + id (number, `1`)
+
+### Get details of an organization [GET]
+
++ Response 200 (application/json)
+  + Attributes (organization)
+
+### Update details of an organization [PUT]
+
++ Request (application/json)
+    + Attributes (object)
+        + name : `ACLU` (string, optional)
+        + description : `American Civil Liberties Union is coordinating this movement.` (string, optional)
+        + link : `https://www.meetup.com/Example/events/123456789/` (string, optional)
+
++ Response 200 (application/json)
+
+### Delete an organization [DELETE]
+
++ Response 200

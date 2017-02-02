@@ -26,3 +26,5 @@ Deployments are automated using a Heroku Pipeline connected to `master`.
 * List all events: `https://findaprotest.herokuapp.com/api/generic/event`
 * List all movements: `https://findaprotest.herokuapp.com/api/generic/movement`
 * List all organizations: `https://findaprotest.herokuapp.com/api/generic/organization`
+
+See the [API documentation](http://docs.findaprotest.apiary.io/#reference/0/category-resource) for complete details.
