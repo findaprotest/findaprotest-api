@@ -1,0 +1,14 @@
+{
+  "name": "findaprotest-api",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/findaprotest/findaprotest-api.git",
+  "license": "Unlicense",
+  "dependencies": {
+    "pg-restify": "^0.3.1",
+    "restify": "^4.3.0"
+  },
+  "scripts": {
+    "start": "node ./index.js"
+  }
+}
