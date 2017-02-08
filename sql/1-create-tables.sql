@@ -15,9 +15,9 @@ CREATE TABLE event (
   "category_id" int,
   "organization_id" int,
   "name" text,
-  "event_time" bigint,
-  "created_time" bigint,
-  "updated_time" bigint,
+  "event_time" int,
+  "created_time" int,
+  "updated_time" int,
   "city" text,
   "state" text,
   "location" text,
@@ -32,7 +32,7 @@ CREATE TABLE event (
 CREATE TABLE movement (
   "id" serial,
   "name" text,
-  "date" bigint,
+  "date" int,
   "description" text,
   "link" text,
   primary key ("id")
