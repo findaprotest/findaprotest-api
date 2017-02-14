@@ -21,6 +21,7 @@ CREATE TABLE event (
   "city" text,
   "state" text,
   "location" text,
+  "summary" text,
   "description" text,
   "tags" text,
   "link" text,
